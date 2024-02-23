@@ -2,7 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ "**", "!main", "!develop"]
+    branches-ignore:
+      - main
+      - develop
 
 jobs:
   build-and-push-docker-image:
