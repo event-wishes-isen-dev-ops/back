@@ -1,7 +1,7 @@
 // src/index.js
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-const db = require('./db');
+var cors = require('cors')
 
 dotenv.config();
 
@@ -32,6 +32,8 @@ const prestataires: Prestataire[] = [
   }
 ]
 app.use(express.json());
+
+app.use(cors())
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
