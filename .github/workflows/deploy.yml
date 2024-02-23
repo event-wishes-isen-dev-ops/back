@@ -18,5 +18,6 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Build and push Docker image
         run: |
-          DATE=$(date +"%d%m%Y") 
-          docker buildx build --push --tag ghcr.io/${{ github.repository_owner }}/event-wishes-back:$DATE --tag ghcr.io/${{ github.repository_owner }}/event-wishes-back:latest .
+          DATE=$(date +"%d%m%Y")
+          TAG=$(echo "${{ github.ref }}" | sed 's|.*/||')
+          docker buildx build --push --tag ghcr.io/${{ github.repository_owner }}/event-wishes-back:$TAG-$DATE --tag ghcr.io/${{ github.repository_owner }}/event-wishes-back:$TAG-latest .
